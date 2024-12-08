@@ -69,3 +69,24 @@
 
   this creates a configuration data structure configuring the backend's
   environment, and port.
+
+  put the following in =backend/.sequelizerc=
+  #+begin_src js
+    const path = require('path');
+
+    module.exports = {
+      config: path.resolve('config', 'database.js'),
+      'models-path': path.resolve('db', 'models'),
+      'seeders-path': path.resolve('db', 'seeders'),
+      'migrations-path': path.resolve('db', 'migrations')
+    };
+  #+end_src
+
+  to tell sequelize to use =backend/config/database.js= for
+  configuration.
+
+  #+begin_src bash
+    # in backend/
+    git add ".sequelizerc"
+    git commit -m "configure sequelize"
+  #+end_src
