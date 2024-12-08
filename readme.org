@@ -4,6 +4,8 @@
 
   a page with a number and a button to make that number go up
 
+  does not do any authentication or csrf
+
 * steps to make the number-go-up project
 
 ** make this readme
@@ -15,6 +17,18 @@
     git commit -m "init repo"
   #+end_src
 
+  put the following in =.prettierrc=
+#+begin_src json
+  {
+    "printWidth": 70
+  }
+#+end_src
+
+  #+begin_src bash
+    git add .prettierrc
+    git commit -m "add .prettierrc"
+  #+end_src
+
 ** make backend
   #+begin_src bash
     mkdir backend
@@ -22,6 +36,8 @@
     npm init -y
     wget -O .gitignore \
         https://raw.githubusercontent.com/github/gitignore/refs/heads/main/Node.gitignore
+    git add .gitignore
+    git commit -m "add template gitignore for node projects"
     npm install \
         dotenv \
         express \
@@ -32,4 +48,24 @@
         nodemon \
         sequelize-cli \
         dotenv-cli
+    git add package.json
+    git add package-lock.json
+    git commit -m "add initial npm packages, lock their versions"
   #+end_src
+
+  put the following in =backend/env.example=
+  #+begin_src bash
+    PORT=8000
+    SCHEMA="number_go_up"
+  #+end_src
+
+  put the following in =backend/config/index.js=
+  #+begin_src js
+    module.exports = {
+      environment: process.env.NODE_ENV || "development",
+      port: process.env.PORT || 8000,
+    };
+  #+end_src
+
+  this creates a configuration data structure configuring the backend's
+  environment, and port.
