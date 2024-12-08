@@ -134,3 +134,9 @@
       },
     };
   #+end_src
+
+  then add and commit those changes to the sequelize configuration
+  #+begin_src bash
+    git add backend/conig/database.js
+    git commit -m "use development schema during development"
+  #+end_src
