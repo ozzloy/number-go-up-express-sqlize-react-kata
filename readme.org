@@ -1,16 +1,35 @@
 * a project to practice sql, seqeulize, express, react, redux
+
 * number-go-up outline
-a page with a number and a button to make that number go up
+
+  a page with a number and a button to make that number go up
+
 * steps to make the number-go-up project
+
 ** make this readme
-#+begin_src bash
-touch readme.org
-#+end_src
+
+  #+begin_src bash
+    touch readme.org
+    # add content to readme.org
+    git add readme.org
+    git commit -m "init repo"
+  #+end_src
+
 ** make backend
-#+begin_src bash
-  mkdir backend
-  cd backend
-  npm init -y
-  wget -O .gitignore \
-       https://raw.githubusercontent.com/github/gitignore/refs/heads/main/Node.gitignore
-#+end_src
+  #+begin_src bash
+    mkdir backend
+    cd backend
+    npm init -y
+    wget -O .gitignore \
+        https://raw.githubusercontent.com/github/gitignore/refs/heads/main/Node.gitignore
+    npm install \
+        dotenv \
+        express \
+        per-env \
+        sequelize \
+        pg
+    npm install --save-dev \
+        nodemon \
+        sequelize-cli \
+        dotenv-cli
+  #+end_src

@@ -7,5 +7,17 @@
     "test": "npm test"
   },
   "author": "",
-  "license": "AGPL-3.0-or-later"
+  "license": "AGPL-3.0-or-later",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "per-env": "^1.0.2",
+    "pg": "^8.13.1",
+    "sequelize": "^6.37.5"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^7.4.4",
+    "nodemon": "^3.1.7",
+    "sequelize-cli": "^6.6.2"
+  }
 }
