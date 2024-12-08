@@ -1,0 +1,11 @@
+{
+  "name": "number-go-up-backend",
+  "version": "1.0.0",
+  "description": "maintain a db with a number that goes up",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "",
+  "license": "AGPL-3.0-or-later"
+}
