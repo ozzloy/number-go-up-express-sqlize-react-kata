@@ -59,7 +59,7 @@
   #+begin_src bash
     PORT=8000
     SCHEMA="number_go_up"
-    DEVELOPMENT_SCHEMA="number_go_up_dev"
+    DEVELOPMENT_SCHEMA="number_go_up_development"
   #+end_src
 
   put the following in =backend/config/index.js=
@@ -139,4 +139,15 @@
   #+begin_src bash
     git add backend/conig/database.js
     git commit -m "use development schema during development"
+  #+end_src
+
+  put the following in =backend/psql-setup-script.js=
+  #+begin_src js
+    const { sequelize } = require('./db/models');
+
+    sequelize.showAllSchemas({ logging: false }).then(async (data) => {
+      if (!data.includes(process.env.SCHEMA)) {
+        await sequelize.createSchema(process.env.SCHEMA);
+      }
+    });
   #+end_src
