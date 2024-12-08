@@ -4,6 +4,8 @@
 
   a page with a number and a button to make that number go up
 
+  uses postgres in local development to maximize deployment ease
+
   does not do any authentication or csrf
 
 * steps to make the number-go-up project
@@ -57,6 +59,7 @@
   #+begin_src bash
     PORT=8000
     SCHEMA="number_go_up"
+    DEVELOPMENT_SCHEMA="number_go_up_dev"
   #+end_src
 
   put the following in =backend/config/index.js=
@@ -89,4 +92,45 @@
     # in backend/
     git add ".sequelizerc"
     git commit -m "configure sequelize"
+  #+end_src
+
+  then run sequelize to generate some skeleton files.  modify the
+  skeletons, add and commit them.
+
+  #+begin_src bash
+    # in backend/
+    npx sequelize init
+  #+end_src
+
+  this creates =backend/config/database.js= with content we want to
+  change to the following,
+  #+begin_src js
+    const config = require("./index");
+
+    module.exports = {
+      production: {
+        use_env_variable: "DATABASE_URL",
+        dialect: "postgres",
+        seederStorage: "sequelize",
+        dialectOptions: {
+          ssl: {
+            require: true,
+            rejectUnauthorized: false,
+          },
+        },
+        define: {
+          schema: process.env.SCHEMA,
+        },
+      },
+      development: {
+        dialect: "postgres",
+        seederStorage: "sequelize",
+        benchmark: true,
+        logQueryParameters: true,
+        typeValidation: true,
+        define: {
+          schema: process.env.DEVELOPMENT_SCHEMA,
+        },
+      },
+    };
   #+end_src
