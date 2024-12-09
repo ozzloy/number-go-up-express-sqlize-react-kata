@@ -1,16 +1,17 @@
 const config = require("./index");
 
-module.exports = {
+const value = {
   development: {
-    storage: config.dbFile,
-    dialect: "sqlite",
+    ...config.db,
     seederStorage: "sequelize",
     logQueryParameters: true,
     typeValidation: true,
+    define: {
+      schema: config.db.schema,
+    },
   },
   production: {
-    use_env_variable: "DATABASE_URL",
-    dialect: "postgres",
+    ...config.db,
     seederStorage: "sequelize",
     dialectOptions: {
       ssl: {
@@ -19,7 +20,9 @@ module.exports = {
       },
     },
     define: {
-      schema: process.env.SCHEMA,
+      schema: config.db.schema,
     },
   },
 };
+
+module.exports = value;

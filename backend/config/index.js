@@ -1,9 +1,27 @@
-module.exports = {
-  environment: process.env.NODE_ENV || "development",
-  port: process.env.PORT || 8000,
-  dbFile: process.env.DB_FILE,
-  jwtConfig: {
-    secret: process.env.JWT_SECRET,
-    expiresIn: process.env.JWT_EXPIRES_IN,
+const {
+  NODE_ENV,
+  PORT,
+  DB_PROTOCOL: dialect,
+  DB_USERNAME: username,
+  DB_PASSWORD: password,
+  DB_HOST: host,
+  DB_DATABASE: database,
+  DB_PORT: port,
+  DB_SCHEMA: schema,
+} = process.env;
+
+const value = {
+  environment: NODE_ENV || "development",
+  port: PORT || 8000,
+  db: {
+    username,
+    password,
+    database,
+    host: host || "localhost",
+    port: port || 5432,
+    dialect,
+    schema,
   },
 };
+
+module.exports = value;

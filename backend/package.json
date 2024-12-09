@@ -4,6 +4,10 @@
   "description": "maintain a db with a number that goes up",
   "main": "index.js",
   "scripts": {
+    "init-db": "dotenv -e .env.development -- node psql-setup-script.js ",
+    "start": "dotenv per-env",
+    "start:development": "dotenv -e .env.development -- nodemon app.js",
+    "start:production": "dotenv -e .env.production -- nodemon app.js",
     "test": "npm test"
   },
   "author": "",
